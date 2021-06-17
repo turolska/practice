@@ -25,7 +25,7 @@ server.get('/',(request,response)=>{
 
 server.get('/map',(request,response)=>{
     req_data = request.query;
-    switch(req_data['method']) {
+    switch(req_data.method) {
     case 'setCoordinates':
         search.setCoordinates(req_data['param1'],req_data['param2']);
         break;
