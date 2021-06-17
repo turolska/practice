@@ -22,3 +22,34 @@ server.get('/',(request,response)=>{
 // response.sendFile(__dirname + '/map_code.js');
 //
 //});
+
+server.get('/map',(request,response)=>{
+    req_data = request.query
+    switch(req_data['method']) {
+    case 'setCoordinates':
+        search.setCoordinates(req_data['param1'],req_data['param2'])
+        break;
+    case 'setDistance':
+        search.setDistance(req_data['param1'])
+        break;
+    case 'setCuisine':
+        search.setCuisine(req_data['param1'])
+        break;
+    case 'setCity':
+        search.setCity(req_data['param1'],req_data['param2'])
+        break;
+    case 'setZipCode':
+        search.setZipCode(req_data['param1'])
+        break;
+
+    default:
+    // code block
+    }
+    
+    search.search().then(res => {response.json(res);});
+});
+
+//Binding to localhost://3000
+server.listen(3000,()=>{
+ console.log('Express server started at port 3000');
+});
